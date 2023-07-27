@@ -1,0 +1,89 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOvTXKpp4fzr0w+sShH/24R",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/erickiptoo/Python_for-Data-/blob/main/Solving%20Rent%20Mistery%20with%20Python\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Radha is planning to buy a house that costs $1,260,000. She considering two options to finance her purchase:\n",
+        "\n",
+        "Option 1: Make an immediate down payment of $300,000, and take loan 8-year loan with an interest rate of 10% (compounded monthly) for the remaining amount.\n",
+        "Option 2: Take a 10-year loan with an interest rate of 8% (compounded monthly) for the entire amount.\n",
+        "use python functions to solve"
+      ],
+      "metadata": {
+        "id": "trKmIXOkwKM3"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def calculate_monthly_payment(principal, interest_rate, loan_period):\n",
+        "    n = loan_period * 12\n",
+        "    r = interest_rate / (12 * 100)\n",
+        "    monthly_payment = (principal * r * (1 + r) ** n) / ((1 + r) ** n - 1)\n",
+        "    return monthly_payment\n",
+        "\n",
+        "def option1_total_amount(principal, down_payment, interest_rate, loan_period):\n",
+        "    loan_amount = principal - down_payment\n",
+        "    monthly_payment = calculate_monthly_payment(loan_amount, interest_rate, loan_period)\n",
+        "    total_payment = down_payment + (monthly_payment * loan_period * 12)\n",
+        "    return total_payment\n",
+        "\n",
+        "def option2_total_amount(principal, interest_rate, loan_period):\n",
+        "    monthly_payment = calculate_monthly_payment(principal, interest_rate, loan_period)\n",
+        "    total_payment = monthly_payment * loan_period * 12\n",
+        "    return total_payment\n",
+        "\n",
+        "def main():\n",
+        "    # Constants\n",
+        "    house_cost = 1260000\n",
+        "    down_payment_option1 = 300000\n",
+        "    interest_rate_option1 = 10\n",
+        "    interest_rate_option2 = 8\n",
+        "    loan_period_option1 = 8\n",
+        "    loan_period_option2 = 10\n",
+        "\n",
+        "    # Calculate total amounts using local variables and functions\n",
+        "    total_amount_option1 = option1_total_amount(house_cost, down_payment_option1, interest_rate_option1, loan_period_option1)\n",
+        "    total_amount_option2 = option2_total_amount(house_cost, interest_rate_option2, loan_period_option2)\n",
+        "\n",
+        "    # Display results\n",
+        "    print(\"Total amount paid for Option 1: ${:.2f}\".format(total_amount_option1))\n",
+        "    print(\"Total amount paid for Option 2: ${:.2f}\".format(total_amount_option2))\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()\n"
+      ],
+      "metadata": {
+        "id": "nQgqCETCwLzh"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
